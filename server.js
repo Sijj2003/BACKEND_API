@@ -8,11 +8,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const app = express();
 const isProduction = process.env.NODE_ENV === 'production';
-const allowedOrigins = ['https://portalmistic.vercel.app', 'http://localhost:3000'];
+const allowedOriginsRegex = /^https:\/\/portalmistic(?:o)?\.vercel\.app$/;
 
 const corsOptions = {
     origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
+        if (!origin || allowedOriginsRegex.test(origin) || origin === 'http://localhost:3000') {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
