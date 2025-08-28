@@ -245,14 +245,14 @@ app.post('/api/login', async (req, res) => {
             res.json({
                 nombre: user.nombre,
                 isAdmin: true,
-                redirect: '/admin'
+                redirect: '/admin.html'
             });
         } else {
             console.log('Redirigiendo al dashboard de usuario');
             res.json({
                 nombre: user.nombre,
                 isAdmin: false,
-                redirect: '/dashboard'
+                redirect: '/dashboard.html'
             });
         }
     } catch (error) {
@@ -284,7 +284,7 @@ app.get('/api/user', verifyToken, async (req, res) => {
 // Ruta para cerrar sesión
 app.get('/logout', (req, res) => {
     res.clearCookie('token');
-    res.redirect('/');
+    res.redirect('/index.html');
 });
 
 // Ruta para actualizar perfil
